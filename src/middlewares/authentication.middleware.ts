@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
+import { getCustomRepository } from "typeorm";
+import UserRepository from "../repositories/user.repository";
+import AppError from "../errors/appError";
 
 export const authenticateUser = (
   req: Request,
@@ -15,14 +18,23 @@ export const authenticateUser = (
   jwt.verify(
     token,
     process.env.JWT_SECRET as string,
-    (err: any, decoded: any) => {
-      if (err) {
-        return res.status(401).json({ message: "Invalid token" });
-      } else {
-        const userUuid = decoded.uuid;
-        req.user = { uuid: userUuid };
+    async (err: any, decoded: any) => {
+      try {
+        if (err) {
+          return res.status(401).json({ message: "Invalid token" });
+        } else {
+          const userRepository = getCustomRepository(UserRepository);
+          const user = await userRepository.findByUuid(decoded.uuid);
+          if (!user) {
+            throw new AppError(404, "User not found");
+          }
 
-        return next();
+          req.user = user;
+
+          return next();
+        }
+      } catch (e) {
+        next(e);
       }
     }
   );

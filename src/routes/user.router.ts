@@ -18,8 +18,14 @@ export const userRouter = () => {
   router.post("", validate(createUserSchema), verifyDuplicateEmail, create);
   router.get("", authenticateUser, authorizateAdmin, list);
   router.get("/profile", authenticateUser, profile);
-  router.patch("/:uuid", authenticateUser, validate(updateUserSchema), update);
-  router.delete("/:uuid", authenticateUser, exclude);
+  router.patch(
+    "/:uuid",
+    authenticateUser,
+    authorizateAdmin,
+    validate(updateUserSchema),
+    update
+  );
+  router.delete("/:uuid", authenticateUser, authorizateAdmin, exclude);
 
   return router;
 };

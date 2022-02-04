@@ -1,22 +1,25 @@
-import { getCustomRepository } from "typeorm";
 import { Request, Response, NextFunction } from "express";
-import UserRepository from "../repositories/user.repository";
+import AppError from "../errors/appError";
 
 export const authorizateAdmin = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const userRepository = getCustomRepository(UserRepository);
+  try {
+    const { isAdm } = req.user;
 
-  const user = await userRepository.findByUuid(req.user.uuid);
-
-  if (user) {
-    const { isAdm } = user;
     if (!isAdm) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-  }
+      if (!req.params.uuid) {
+        throw new AppError(401, "Unauthorized");
+      } else if (req.params.uuid !== req.user.uuid) {
+        throw new AppError(401, "Missing admin permissions");
+      }
 
-  return next();
+      return next();
+    }
+    return next();
+  } catch (e) {
+    next(e);
+  }
 };
