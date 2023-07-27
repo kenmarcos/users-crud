@@ -1,25 +1,21 @@
 import { Request, Response, NextFunction } from "express";
 import AppError from "../errors/appError";
 
-export const authorizateAdmin = async (
+export const authorizateAdmin = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    const { isAdm } = req.user;
+  const { isAdm } = req.user;
 
-    if (!isAdm) {
-      if (!req.params.uuid) {
-        throw new AppError(401, "Unauthorized");
-      } else if (req.params.uuid !== req.user.uuid) {
-        throw new AppError(401, "Missing admin permissions");
-      }
-
-      return next();
+  if (!isAdm) {
+    if (!req.params.uuid) {
+      throw new AppError(403, "Unauthorized");
+    } else if (req.params.uuid !== req.user.uuid) {
+      throw new AppError(403, "Missing admin permissions");
     }
+
     return next();
-  } catch (e) {
-    next(e);
   }
+  return next();
 };

@@ -10,7 +10,8 @@ export const authenticateUser = (
   next: NextFunction
 ) => {
   if (!req.headers.authorization) {
-    return res.status(401).json({ message: "Missing authorization headers" });
+    // return res.status(401).json({ message: "Missing authorization headers" });
+    throw new AppError(401, "Missing authorization headers");
   }
 
   const token = req.headers.authorization.split(" ")[1];
@@ -21,7 +22,8 @@ export const authenticateUser = (
     async (err: any, decoded: any) => {
       try {
         if (err) {
-          return res.status(401).json({ message: "Invalid token" });
+          // return res.status(401).json({ message: "Invalid token" });
+          throw new AppError(401, "Invalid token");
         } else {
           const userRepository = getCustomRepository(UserRepository);
           const user = await userRepository.findByUuid(decoded.uuid);

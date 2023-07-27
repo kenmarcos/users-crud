@@ -15,7 +15,6 @@ export const verifyDuplicateEmail = async (
 
     if (user) {
       throw new AppError(400, "E-mail already registered");
-      // return res.status(400).json({ message: "E-mail already registered" });
     }
 
     return next();
