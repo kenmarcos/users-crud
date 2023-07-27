@@ -13,7 +13,19 @@ export const loginSchema = yup.object().shape({
 });
 
 export const updateUserSchema = yup.object().shape({
-  name: yup.string(),
-  email: yup.string().email("Invalid email"),
-  password: yup.string(),
+  name: yup.string().test("name", "Invalid name", (value) => {
+    if (value === "") return false;
+    return true;
+  }),
+  email: yup
+    .string()
+    .email("Invalid email")
+    .test("email", "Invalid e-mail", (value) => {
+      if (value === "") return false;
+      return true;
+    }),
+  password: yup.string().test("password", "Invalid password", (value) => {
+    if (value === "") return false;
+    return true;
+  }),
 });
