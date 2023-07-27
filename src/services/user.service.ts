@@ -78,32 +78,6 @@ export const updateUser = async (
   const updatedUser = userRepository.findOne({ uuid: paramsUuid });
 
   return updatedUser;
-
-  // if (validatedData.password) {
-  //   validatedData.password = bcrypt.hashSync(validatedData.password, 10);
-  // }
-  // const userRepository = getCustomRepository(UserRepository);
-  // const user = await userRepository.findByUuid(userUuid);
-  // if (!user?.isAdm) {
-  //   if (userUuid === paramsUuid) {
-  //     await userRepository.update({ uuid: paramsUuid }, validatedData);
-  //     const updatedUser = await userRepository.findByUuid(paramsUuid);
-  //     if (!updatedUser) {
-  //       throw new AppError(404, "Not found");
-  //     }
-  //     const { password, ...updatedUserWithoutPassword } = updatedUser;
-  //     return updatedUserWithoutPassword;
-  //   } else {
-  //     throw new AppError(401, "Missing admin permission");
-  //   }
-  // }
-  // await userRepository.update({ uuid: paramsUuid }, validatedData);
-  // const updatedUser = await userRepository.findOne({ uuid: paramsUuid });
-  // if (!updatedUser) {
-  //   throw new AppError(404, "Not found");
-  // }
-  // const { password, ...updatedUserWithoutPassword } = updatedUser;
-  // return updatedUserWithoutPassword;
 };
 
 export const deleteUser = async (paramsUuid: string) => {
@@ -116,21 +90,4 @@ export const deleteUser = async (paramsUuid: string) => {
   }
 
   await userRepository.deleteByUuid(paramsUuid);
-  // const user = await userRepository.findByUuid(userUuid);
-  // const userToBeDeleted = await userRepository.findByUuid(paramsUuid);
-
-  // if (!userToBeDeleted) {
-  //   throw new AppError(404, "Uuid not found");
-  // }
-
-  // if (!user?.isAdm) {
-  //   if (userUuid === paramsUuid) {
-  //     await userRepository.deleteByUuid(paramsUuid);
-  //     return "User deleted with success";
-  //   } else {
-  //     throw new AppError(401, "Missing admin permission");
-  //   }
-  // }
-  // await userRepository.deleteByUuid(paramsUuid);
-  // return "User deleted with success";
 };
