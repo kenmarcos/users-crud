@@ -43,7 +43,7 @@ export const listUsers = async () => {
   const userRepository = getRepository(User);
   const users = await userRepository
     .createQueryBuilder("user")
-    .addSelect("user.password")
+    // .addSelect("user.password")
     .getMany();
   return users;
 };
