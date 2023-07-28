@@ -51,13 +51,13 @@ Através dessa aplicação, um usuário pode se cadastrar, fazer login, atualiza
 - Abra o terminal e clone o repositório:
 
 ```Bash
-$ git clone git@github.com:<your_user>/users-crud_nodejs.git
+$ git clone git@github.com:<your_user>/users-crud.git
 ```
 
 - Entre no diretório do projeto:
 
 ```Bash
-$ cd users-crud_nodejs
+$ cd users-crud
 ```
 
 - Instale as dependências:
@@ -101,7 +101,7 @@ Pronto! A aplicação, agora, estará sendo executada através na rota https://l
 
 > Para utilizar a aplicação, é necessário o uso de uma API Client, como [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/download).
 
-Verifique a [documentação](https://kenmarcos.github.io/users-crud_nodejs/) da API.
+Verifique a [documentação](https://kenmarcos.github.io/users-crud/) da API.
 
 <!-- TECNOLOGIAS -->
 
