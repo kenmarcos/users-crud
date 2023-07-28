@@ -4,7 +4,7 @@ services:
   db:
     image: postgres
     restart: always
-    environment:
-      POSTGRES_PASSWORD: users_crud_pass
+    env_file:
+      - .env
     ports:
       - 5431:5432
