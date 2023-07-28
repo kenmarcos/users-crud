@@ -5,9 +5,9 @@
     </h1>
     <p>
         <a href="#%EF%B8%8F-sobre-o-projeto">Sobre o Projeto</a> •
-        <a href="#-funcionalidades">Funcionalidades</a> •
-        <a href="#-layout">Layout</a> •
+        <a href="#-Endpoints">Funcionalidades</a> •
         <a href="#%EF%B8%8F-instalação">Instalação</a> •
+        <a href="#-utilização">Utilização</a> •
         <a href="#%EF%B8%8F-tecnologias">Tecnologias</a> •
         <a href="#-autor">Autor</a>
     </p>
@@ -40,23 +40,13 @@ Através dessa aplicação, um usuário pode se cadastrar, fazer login, atualiza
 | PATCH  | /users         | /<uuid> Atualiza os dados de um usuário                                                                 |
 | DELETE | /users         | /<uuid> Deleta usuários do banco                                                                        |
 
-<!-- LAYOUT -->
-
-## 🎨 Layout
-
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Screenshot_Dashboard.png/800px-Screenshot_Dashboard.png?20190516105902" width=500>
-
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Screenshot_Dashboard.png/800px-Screenshot_Dashboard.png?20190516105902" width=500>
-
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Screenshot_Dashboard.png/800px-Screenshot_Dashboard.png?20190516105902" width=500>
-</p>
-
 <!-- INSTALAÇÃO -->
 
 ## ⚙️ Instalação
 
-- Faça o fork desse repositório
+> Este projeto requer que o [Git](https://git-scm.com/), o [Node.js](https://nodejs.org/en/) e o [Docker](https://www.docker.com/) estejam instalados em sua máquina.
+
+- Faça o fork desse repositório.
 
 - Abra o terminal e clone o repositório:
 
@@ -76,22 +66,42 @@ $ cd users-crud_nodejs
 $ yarn install
 ```
 
-- Adicione o arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+- Adicione o arquivo `.env` na raiz do projeto e configure suas variáveis de ambiente seguindo o modelo do arquivo `.env.example`):
 
+```dotenv
+POSTGRES_USER=your_username
+POSTGRES_PASSWORD=your_password
+POSTGRES_DB=your_database
+JWT_SECRET=your_secret_key
 ```
-NEXT_PUBLIC_API_URL=https://api.example.com/
-.
-.
-.
+
+- Inicie o contêiner docker referente ao banco de dados PostgreSQL de acordo com as configurações do arquivo `docker-compose.yml`:
+
+```Bash
+$ docker-compose up
+```
+
+- Execute as _migrations_ para criar as tabelas no banco de dados:
+
+```Bash
+$ yarn typeorm migration:run
 ```
 
 - Execute a aplicação:
 
 ```Bash
-$ yarn start
+$ yarn dev
 ```
 
-Pronto! A aplicação, agora, pode ser acessada através da rota https://localhost:3000/.
+Pronto! A aplicação, agora, estará sendo executada através na rota https://localhost:3000/.
+
+<!-- UTILIZAÇÃO -->
+
+## 🚀 Utilização
+
+> Para utilizar a aplicação, é necessário o uso de uma API Client, como [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/download).
+
+Verifique a [documentação](https://kenmarcos.github.io/users-crud_nodejs/) da API.
 
 <!-- TECNOLOGIAS -->
 
@@ -99,12 +109,14 @@ Pronto! A aplicação, agora, pode ser acessada através da rota https://localho
 
 Para o desenvolvimento desse projeto, as seguintes ferramentas foram utilizadas:
 
-- **[React.js](https://pt-br.reactjs.org/)**
-- **[Next.js](https://nextjs.org/)**
+- **[Node.js](https://nodejs.org/)**
+- **[Express.js](https://expressjs.com/)**
 - **[TypeScript](https://www.typescriptlang.org/)**
-  .
-  .
-  .
+- **[TypeORM](https://typeorm.io/)**
+- **[Docker](https://www.docker.com/)**
+- **[Bcrypt](https://www.npmjs.com/package/bcrypt)**
+- **[JSON Web Token](https://www.npmjs.com/package/jsonwebtoken)**
+- **[Yup](https://www.npmjs.com/package/yup)**
 
 ## 👨‍💻 Autor
 
