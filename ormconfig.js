@@ -1,6 +1,6 @@
 const devEnv = {
   type: "postgres",
-  url: "postgresql://postgres:users_crud_pass@localhost:5431/users_crud_db",
+  url: process.env.DATABASE_URL,
   entities: ["./src/entities/**/*.ts"],
   migrations: ["./src/database/migrations/*.ts"],
   cli: {
