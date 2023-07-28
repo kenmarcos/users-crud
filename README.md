@@ -5,7 +5,7 @@
     </h1>
     <p>
         <a href="#%EF%B8%8F-sobre-o-projeto">Sobre o Projeto</a> •
-        <a href="#-Endpoints">Funcionalidades</a> •
+        <a href="#-endpoints">Endpoints</a> •
         <a href="#%EF%B8%8F-instalação">Instalação</a> •
         <a href="#-utilização">Utilização</a> •
         <a href="#%EF%B8%8F-tecnologias">Tecnologias</a> •
@@ -37,8 +37,8 @@ Através dessa aplicação, um usuário pode se cadastrar, fazer login, atualiza
 | POST   | /login         | Gera um token JWT recebendo email e password no corpo da requisição como JSON.                          |
 | GET    | /users         | Lista todos os usuários                                                                                 |
 | GET    | /users/profile | Retorna os dados do usuário logado (usuário a qual pertence o token que será necessário neste endpoint) |
-| PATCH  | /users         | /<uuid> Atualiza os dados de um usuário                                                                 |
-| DELETE | /users         | /<uuid> Deleta usuários do banco                                                                        |
+| PATCH  | /users/\<uuid> | Atualiza os dados de um usuário                                                                         |
+| DELETE | /users/\<uuid> | Deleta usuários do banco                                                                                |
 
 <!-- INSTALAÇÃO -->
 
